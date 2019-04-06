@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes();?>>
     <head>
+        <meta charset="<?php bloginfo('charset') ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php wp_head(); ?>
     </head>
-    <body>
+    <body <?php body_class(); ?>>
         <header class="site-header">
             <div class="container">
-                <h1 class="school-logo-text float-left"><a href="<?php echo site_url(); ?>"><strong>Fictional</strong> University</a></h1>
+                <h1 class="school-logo-text float-left"><a href="<?php echo site_url('/'); ?>"><strong>Fictional</strong> University</a></h1>
                 <span class="js-search-trigger site-header__search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
                 <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
                 <div class="site-header__menu group">
                     <nav class="main-navigation">
+                        <?php
+                            # Displaying Menu in wordpress
+                            /*
+                            $navConfig = array(
+                                'theme_location'    => 'headerMenuLocation',    
+                            );
+                            wp_nav_menu($navConfig);
+                            */
+                        ?>
                         <ul>
-                            <li><a href="<?php echo site_url('/about-us'); ?>">About Us</a></li>
+                            <?php
+                            /*
+                        	*	is_page('about-us')             -> if page slug is 'about-us', return TRUE
+                        	*	wp_get_post_parent_id(0) == 10  -> if the current page's parent page is 10 (About Us page ID), return TRUE
+                        	*/
+                            ?>
+                            <li <?php echo (is_page('about-us') or wp_get_post_parent_id(0) == 10 ) ? 'class="current-menu-item"' : '' ?> ><a href="<?php echo site_url('/about-us/'); ?>">About Us</a></li>
                             <li><a href="#">Programs</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">Campuses</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li <?php echo (is_page('blog') or wp_get_post_parent_id(0) == 10 ) ? 'class="current-menu-item"' : '' ?>><a href="<?php echo site_url('/blog/'); ?>">Blog</a></li>
                         </ul>
                     </nav>
                     <div class="site-header__util">

@@ -11,7 +11,10 @@ function university_files()
 
 function university_features()
 {
-    add_theme_support('title-tag');
+    register_nav_menu('headerMenuLocation', 'Header Menu Location'); // Add Menu text in admin sidebar : Appearance > Menus
+    register_nav_menu('footerLocationOne', 'Footer Location One');
+    register_nav_menu('footerLocationTwo', 'Footer Location Two');
+    add_theme_support('title-tag'); // Dynamic Text Title for each page & post
 }
 
 # Calling
