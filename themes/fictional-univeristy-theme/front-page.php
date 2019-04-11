@@ -13,29 +13,43 @@
     <div class="full-width-split__one">
         <div class="full-width-split__inner">
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
-
+            <?php
+                $today = date('Ymd');
+                $wpConfig =array(
+                    'post_type'         => 'event',
+                    'posts_per_page'    => -1,                  # (-1 : return all data)
+                    'orderby'           => 'meta_value_num',    # (rand : sort in random order) / if set to meta_value_XXX , use another argument 
+                    'meta_key'          => 'event_date',        # The another argument used, -> meta_key <- assign the custom field name with it.
+                    'order'             => 'ASC',
+                    'meta_query'        => array(               
+                        array(
+                            'key'       => 'event_date',        # WHERE key {'event_date'}
+                            'compare'   => '>=',                # compare {IS '>=' (greater or equal to)}
+                            'value'     => $today,              # value {today's date} 
+                            'type'      => 'numeric'            # type of value to compare {'numeric'}
+                        )    
+                    )
+                );
+                $homePageEvents = new WP_Query($wpConfig);
+                while($homePageEvents->have_posts()):
+                    $homePageEvents->the_post();
+                    $eventDate = new DateTime(get_field('event_date')); //Pass the date into php function DateTime so that we can format it in our way.
+            ?>
             <div class="event-summary">
-                <a class="event-summary__date t-center" href="#">
-                    <span class="event-summary__month">Mar</span>
-                    <span class="event-summary__day">25</span>
+                <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
+                    <span class="event-summary__month"><?php echo $eventDate->format('M'); ?></span>
+                    <span class="event-summary__day"><?php echo $eventDate->format('d'); ?></span>
                 </a>
                 <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny"><a href="#">Poetry in the 100</a></h5>
-                    <p>Bring poems you&rsquo;ve wrote to the 100 building this Tuesday for an open mic and snacks. <a href="#" class="nu gray">Learn more</a></p>
+                    <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                    <p><?php echo (has_excerpt()) ? get_the_excerpt() : wp_trim_words(get_the_content(), 28); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
                 </div>
             </div>
-            <div class="event-summary">
-                <a class="event-summary__date t-center" href="#">
-                    <span class="event-summary__month">Apr</span>
-                    <span class="event-summary__day">02</span>
-                </a>
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny"><a href="#">Quad Picnic Party</a></h5>
-                    <p>Live music, a taco truck and more can found in our third annual quad picnic day. <a href="#" class="nu gray">Learn more</a></p>
-                </div>
-            </div>
-
-            <p class="t-center no-margin"><a href="#" class="btn btn--blue">View All Events</a></p>
+            <?php 
+                endwhile; 
+                wp_reset_postdata(); // Just like a smoking habit, use it...
+            ?>
+            <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('event'); ?>" class="btn btn--blue">View All Events</a></p>
 
         </div>
     </div>
@@ -44,6 +58,7 @@
             <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
             <?php
                 $wpConfig =array(
+                    'post_type'         => 'post',
                     'posts_per_page'    => 2
                 );
                 $homePagePosts = new WP_Query($wpConfig);
@@ -58,7 +73,7 @@
                 </a>
                 <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h5>
-                    <p><?php echo wp_trim_words(get_the_content(), 28); ?> <a href="<?php the_permalink() ?>" class="nu gray">Read more</a></p>
+                    <p><?php echo (has_excerpt()) ? get_the_excerpt() : wp_trim_words(get_the_content(), 28); ?> <a href="<?php the_permalink() ?>" class="nu gray">Read more</a></p>
                 </div>
             </div>
             <?php 
