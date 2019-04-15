@@ -17,6 +17,36 @@ function university_features()
     add_theme_support('title-tag'); // Dynamic Text Title for each page & post
 }
 
+function university_adjust_queries($query)
+{
+    /* Below Query explained :
+    *
+    *  > !is_admin() ->  will not be executed in Admin section
+    *
+    *  > is_post_type_archive('event') ->  will check if the post type of this archive is "event"
+    *  
+    *  > $query->is_main_query() -> will check if this is the main query (Default URL based query) and not a custom query
+    *
+    */
+    if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query() ):
+        $query->set('meta_key', 'event_date');
+        $query->set('orderby', 'meta_value_num');
+        $query->set('order', 'ASC');
+        
+        $today = date('Ymd');
+        $query->set('meta_query',   array(
+                                        array(
+                                            'key'       => 'event_date',        # WHERE key {'event_date'}
+                                            'compare'   => '>=',                # compare {IS '>=' (greater or equal to)}
+                                            'value'     => $today,              # value {today's date} 
+                                            'type'      => 'numeric'            # type of value to compare {'numeric'}
+                                        )    
+                                    )
+        );
+    endif;
+}
+
 # Calling
 add_action('wp_enqueue_scripts', 'university_files');
 add_action('after_setup_theme', 'university_features');
+add_action('pre_get_posts', 'university_adjust_queries');

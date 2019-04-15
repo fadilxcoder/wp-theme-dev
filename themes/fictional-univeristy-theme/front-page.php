@@ -17,8 +17,8 @@
                 $today = date('Ymd');
                 $wpConfig =array(
                     'post_type'         => 'event',
-                    'posts_per_page'    => -1,                  # (-1 : return all data)
-                    'orderby'           => 'meta_value_num',    # (rand : sort in random order) / if set to meta_value_XXX , use another argument 
+                    'posts_per_page'    => 2,                  # (-1 : return all data)
+                    'orderby'           => 'meta_value_num',    # (rand : sort in random order) / if set to meta_value_XXX , use another argument meta_key
                     'meta_key'          => 'event_date',        # The another argument used, -> meta_key <- assign the custom field name with it.
                     'order'             => 'ASC',
                     'meta_query'        => array(               

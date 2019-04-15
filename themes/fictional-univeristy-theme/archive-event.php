@@ -28,5 +28,6 @@
         endwhile;
         echo paginate_links();
     ?>
+    <p class="t-center no-margin"><a href="<?php echo site_url('/past-events/'); ?>" class="btn btn--blue">View Past Events</a></p>
 </div>
 <?php get_footer(); ?>
