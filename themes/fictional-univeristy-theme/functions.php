@@ -19,6 +19,7 @@ function university_features()
     add_image_size('professorLandscape', 400, 260, true); 
     # add_image_size('anotherWayOfCropping', 400, 250, array('center', 'center'));  // image cropping take an array to know where to crop, i.e array('left/center/right', 'top/center/bottom')
     add_image_size('professorPortrait', 480, 650, true); //true is use if you want to crop the image
+    add_image_size('pageBanner', 1500, 350, true);
 }
 
 function university_adjust_queries($query)
