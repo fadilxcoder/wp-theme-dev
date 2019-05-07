@@ -13,6 +13,7 @@
             the_post();
             $eventDate = new DateTime(get_field('event_date'));
     ?>
+    <?php /*
         <div class="event-summary">
             <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
                 <span class="event-summary__month"><?php echo $eventDate->format('M'); ?></span>
@@ -23,6 +24,8 @@
                 <p><?php echo wp_trim_words(get_the_content(), 28); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
             </div>
         </div>
+    */ ?>
+    <?php get_template_part('template-parts/content', 'event'); ?>
     <?php
         endwhile;
         echo paginate_links();

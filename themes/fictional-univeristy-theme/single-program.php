@@ -93,6 +93,7 @@
             $programEvents->the_post();
             $eventDate = new DateTime(get_field('event_date')); //Pass the date into php function DateTime so that we can format it in our way.
     ?>
+    <?php /*
     <div class="event-summary">
         <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
             <span class="event-summary__month"><?php echo $eventDate->format('M'); ?></span>
@@ -103,6 +104,8 @@
             <p><?php echo (has_excerpt()) ? get_the_excerpt() : wp_trim_words(get_the_content(), 28); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
         </div>
     </div>
+    */ ?>
+    <?php get_template_part('template-parts/content', 'event'); ?>
     <?php 
         endwhile; 
         wp_reset_postdata(); // Just like a smoking habit, use it...

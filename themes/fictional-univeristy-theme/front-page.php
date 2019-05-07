@@ -33,19 +33,9 @@
                 $homePageEvents = new WP_Query($wpConfig);
                 while($homePageEvents->have_posts()):
                     $homePageEvents->the_post();
-                    $eventDate = new DateTime(get_field('event_date')); //Pass the date into php function DateTime so that we can format it in our way.
-            ?>
-            <div class="event-summary">
-                <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                    <span class="event-summary__month"><?php echo $eventDate->format('M'); ?></span>
-                    <span class="event-summary__day"><?php echo $eventDate->format('d'); ?></span>
-                </a>
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                    <p><?php echo (has_excerpt()) ? get_the_excerpt() : wp_trim_words(get_the_content(), 28); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
-                </div>
-            </div>
-            <?php 
+                    # $eventDate = new DateTime(get_field('event_date')); //Pass the date into php function DateTime so that we can format it in our way.
+                    # get_template_part('template-parts/content', get_post_type());  => content-event.php / content-program.php / content-any_post_type_name.php
+                    get_template_part('template-parts/content', 'event');
                 endwhile; 
                 wp_reset_postdata(); // Just like a smoking habit, use it...
             ?>

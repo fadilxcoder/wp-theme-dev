@@ -1,11 +1,11 @@
 <?php
 function pageBanner($args = NULL)
 {
-    if(!empty(get_the_title())):
+    if(!empty(get_the_title()) && $args['title'] == ''):
         $args['title'] = get_the_title();
     endif;
     
-    if(!empty(get_field('page_banner_subtitle'))):
+    if(!empty(get_field('page_banner_subtitle')) && $args['subtitle'] == ''):
         $args['subtitle'] = get_field('page_banner_subtitle');
     endif;
     
