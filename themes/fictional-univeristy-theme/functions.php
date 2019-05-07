@@ -1,5 +1,8 @@
 <?php
 
+# Include the file that has some piece of PHP + HTML mixed together
+include('inc-files/page-banner.php');
+
 #Functions
 function university_files()
 {

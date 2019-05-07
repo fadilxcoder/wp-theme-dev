@@ -2,17 +2,13 @@
 	get_header(); 
 	while( have_posts() ):
 		the_post();
+		$args = array(
+			'title'		=> 	get_the_title(),
+			'subtitle'	=>	'',
+			'pageBanner'=>	get_theme_file_uri('/images/ocean.jpg')
+		);
+		pageBanner($args);
 ?>
-<div class="page-banner">
-	<?php $pageBannerimage = get_field('page_banner_background_image'); ?>
-  	<div class="page-banner__bg-image" style="background-image: url(<?php echo $pageBannerimage['sizes']['pageBanner'] ?>);"></div>
-  	<div class="page-banner__content container container--narrow">
-		<h1 class="page-banner__title"><?php the_title() ?></h1>
-  		<div class="page-banner__intro">
-			<p><?php echo get_field('page_banner_subtitle'); ?></p>
-	  	</div>
-  	</div>
-</div>
 <div class="container container--narrow page-section">
 	<div class="generic-content">
 	    <div class="row group">

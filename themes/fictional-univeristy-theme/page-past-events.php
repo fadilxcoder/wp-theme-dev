@@ -1,13 +1,12 @@
 <?php get_header(); ?>
-<div class="page-banner">
-  <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
-  <div class="page-banner__content container container--narrow">
-	  <h1 class="page-banner__title">Past Events</h1>
-	  <div class="page-banner__intro">
-		  <p>A Recap of our previous events</p>
-	  </div>
-  </div>
-</div>
+<?php
+$args = array(
+	'title'		=> 	'Past Events',
+	'subtitle'	=>	'A Recap of our previous events',
+	'pageBanner'=>	get_theme_file_uri('/images/ocean.jpg')
+);
+pageBanner($args);
+?>
 <div class="container container--narrow page-section">
     <?php
         $today = date('Ymd');

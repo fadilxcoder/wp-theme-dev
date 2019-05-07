@@ -1,4 +1,13 @@
 <?php get_header(); ?>
+<?php
+$args = array(
+	'title'		=> 	get_the_archive_title(),
+	'subtitle'	=>	get_the_archive_description(),
+	'pageBanner'=>	get_theme_file_uri('/images/ocean.jpg')
+);
+pageBanner($args);
+?>
+<?php /* ?>
 <div class="page-banner">
   <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
   <div class="page-banner__content container container--narrow">
@@ -11,7 +20,7 @@
 		  <p><?php the_archive_description(); ?></p>
 	  </div>
   </div>
-</div>
+</div> <?php */ ?>
 <div class="container container--narrow page-section">
     <?php
         while(have_posts()):
