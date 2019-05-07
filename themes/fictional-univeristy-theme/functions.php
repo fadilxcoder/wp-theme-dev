@@ -15,6 +15,9 @@ function university_features()
     register_nav_menu('footerLocationOne', 'Footer Location One');
     register_nav_menu('footerLocationTwo', 'Footer Location Two');
     add_theme_support('title-tag'); // Dynamic Text Title for each page & post
+    add_theme_support('post-thumbnails'); // Add in order to have upload thumbnail functionality in admin panel
+    add_image_size('professorLandscape', 400, 260, true);
+    add_image_size('professorPortrait', 480, 650, true);
 }
 
 function university_adjust_queries($query)
@@ -30,8 +33,8 @@ function university_adjust_queries($query)
     */
     if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query() ):
         $query->set('meta_key', 'event_date');
-        $query->set('orderby', 'meta_value_num');
-        $query->set('order', 'ASC');
+        $query->set('orderby', 'meta_value_num');       # Order By name
+        $query->set('order', 'ASC');                    # Into ASC order
         
         $today = date('Ymd');
         $query->set('meta_query',   array(
@@ -43,6 +46,12 @@ function university_adjust_queries($query)
                                         )    
                                     )
         );
+    endif;
+    
+    if(!is_admin() AND is_post_type_archive('program') AND $query->is_main_query() ):
+        $query->set('orderby', 'title');    # Order By name
+        $query->set('order', 'ASC');        # Into ASC order
+        $query->set('posts_per_page', -1);
     endif;
 }
 

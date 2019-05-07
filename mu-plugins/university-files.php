@@ -4,6 +4,7 @@
 #Functions 
 function university_post_types()
 {
+    // Event post type
     $config = array(
         'public'        => true,                        // Set to true in order to display it
         'labels'        => array(
@@ -21,6 +22,42 @@ function university_post_types()
         'supports'      => array('title', 'editor', 'excerpt') // Show screen option in dashboard for events.
     );
     register_post_type('event', $config);
+    
+    
+    // Program post type
+    $config = array(
+        'public'        => true,                        
+        'labels'        => array(
+            'name'          => 'Programs',            
+            'add_new_item'  => 'Add New Program',     
+            'edit_item'     => 'Edit Program',
+            'all_items'     => 'All Programs',
+            'singular_name' => 'Program'
+        ),
+        'menu_icon'     => 'dashicons-tablet',    
+        'has_archive'   => true,                        
+        'rewrite'       => array(
+            'slug'  =>  'programs'                        
+        ),
+        'supports'      => array('title', 'editor')
+    );
+    register_post_type('program', $config);
+    
+    // Professor post type
+    $config = array(
+        'public'        => true,                        
+        'labels'        => array(
+            'name'          => 'Professor',            
+            'add_new_item'  => 'Add New Professor',     
+            'edit_item'     => 'Edit Professor',
+            'all_items'     => 'All Professors',
+            'singular_name' => 'Professor'
+        ),
+        'menu_icon'     => 'dashicons-businessman',    
+        'supports'      => array('title', 'editor', 'thumbnail') // thumbnail -> added in order to set featured image
+    );
+    register_post_type('professor', $config);
+    
 } 
 
 # Calling
