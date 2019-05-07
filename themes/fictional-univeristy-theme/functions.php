@@ -16,8 +16,9 @@ function university_features()
     register_nav_menu('footerLocationTwo', 'Footer Location Two');
     add_theme_support('title-tag'); // Dynamic Text Title for each page & post
     add_theme_support('post-thumbnails'); // Add in order to have upload thumbnail functionality in admin panel
-    add_image_size('professorLandscape', 400, 260, true);
-    add_image_size('professorPortrait', 480, 650, true);
+    add_image_size('professorLandscape', 400, 260, true); 
+    # add_image_size('anotherWayOfCropping', 400, 250, array('center', 'center'));  // image cropping take an array to know where to crop, i.e array('left/center/right', 'top/center/bottom')
+    add_image_size('professorPortrait', 480, 650, true); //true is use if you want to crop the image
 }
 
 function university_adjust_queries($query)
