@@ -23,6 +23,25 @@ function university_post_types()
     );
     register_post_type('event', $config);
     
+    // Campus post type
+    $config = array(
+        'public'        => true,                        // Set to true in order to display it
+        'labels'        => array(
+            'name'          => 'Campus',                // Show in menu in WordPress admin dashboard
+            'add_new_item'  => 'Add New Campus',     
+            'edit_item'     => 'Edit Campus',
+            'all_items'     => 'All Campuses',
+            'singular_name' => 'Campus'
+        ),
+        'menu_icon'     => 'dashicons-location-alt',    // Icon of the display text
+        'has_archive'   => true,                        // If true, create pages (archive-event, single-event) in theme
+        'rewrite'       => array(
+            'slug'  =>  'campuses'                        // Change URL, instead of event => events
+        ),
+        'supports'      => array('title', 'editor', 'excerpt') // Show screen option in dashboard for events.
+    );
+    register_post_type('campus', $config);
+    
     
     // Program post type
     $config = array(

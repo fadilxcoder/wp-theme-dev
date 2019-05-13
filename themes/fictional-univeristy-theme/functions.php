@@ -6,6 +6,7 @@ include('inc-files/page-banner.php');
 #Functions
 function university_files()
 {
+    // wp_enqueue_script('A Name', 'URL of script', 'This script does not depend on any other file', 'The version number', 'TRUE : indicate to load on webpage bottom')
     wp_enqueue_script('main-university-js', get_theme_file_uri('/js/scripts-bundled.js'), NULL, microtime(), true);
     wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
     wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
@@ -60,7 +61,14 @@ function university_adjust_queries($query)
     endif;
 }
 
+function universityMapKey($api)
+{
+    $api['key'] = ' API KEY GOES HERE';
+    return $api;
+}
+
 # Calling
 add_action('wp_enqueue_scripts', 'university_files');
 add_action('after_setup_theme', 'university_features');
 add_action('pre_get_posts', 'university_adjust_queries');
+//add_filter('acf/fields/google_map/api', 'universityMapKey'); // Use for Google Map API Key

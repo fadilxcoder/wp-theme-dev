@@ -32,7 +32,7 @@
                             <li <?php echo (is_page('about-us') or wp_get_post_parent_id(0) == 10 ) ? 'class="current-menu-item"' : '' ?> ><a href="<?php echo site_url('/about-us/'); ?>">About Us</a></li>
                             <li <?php echo ( get_post_type() == 'program' ) ? 'class="current-menu-item"' : '' ?> ><a href="<?php echo get_post_type_archive_link('program'); ?>">Programs</a></li>
                             <li <?php echo ( get_post_type() == 'event' OR is_page('past-events') ) ? 'class="current-menu-item"' : '' ?>><a href="<?php echo get_post_type_archive_link('event'); ?>">Events</a></li>
-                            <li><a href="#">Campuses</a></li>
+                            <li <?php echo ( get_post_type() == 'campus' ) ? 'class="current-menu-item"' : '' ?> ><a href="<?php echo get_post_type_archive_link('campus'); ?>">Campuses</a></li>
                             <li <?php echo ( get_post_type() == 'post' ) ? 'class="current-menu-item"' : '' ?>><a href="<?php echo site_url('/blog/'); ?>">Blog</a></li>
                         </ul>
                     </nav>
